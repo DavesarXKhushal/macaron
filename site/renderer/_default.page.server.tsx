@@ -20,10 +20,10 @@ async function render(pageContext: PageContextServer) {
   const { documentProps } = pageContext.exports;
   const title =
     (documentProps && documentProps.title) ||
-    'रंगरूप — Hindi CSS-in-JS with zero-runtime';
+    'RangRoop — CSS-in-JS with Hindi terms';
   const desc =
     (documentProps && documentProps.description) ||
-    'Hindi CSS-in-JS with zero runtime, complete type safety, and beautiful simplicity. रंगरूप makes styling intuitive with Hindi terminology.';
+    'Typesafe CSS-in-JS with zero runtime and Hindi terms. RangRoop makes styling intuitive with familiar Hindi words in English.';
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
@@ -47,8 +47,8 @@ async function render(pageContext: PageContextServer) {
           rel="stylesheet"
         />
         <title>${title}</title>
-        <meta property="og:title" content="रंगरूप — Hindi CSS-in-JS with zero-runtime" />
-        <meta property="og:description" content="Hindi CSS-in-JS with zero runtime, complete type safety, and beautiful simplicity. रंगरूप makes styling intuitive with Hindi terminology." />
+        <meta property="og:title" content="RangRoop — CSS-in-JS with Hindi terms" />
+        <meta property="og:description" content="Typesafe CSS-in-JS with zero runtime and Hindi terms. RangRoop makes styling intuitive with familiar Hindi words in English." />
         <meta name="og:locale" content="en_US" />
         <meta name="twitter:site" content="@mokshit06" />
         <meta name="twitter:card" content="summary_large_image" />
