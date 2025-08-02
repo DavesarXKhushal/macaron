@@ -48,7 +48,7 @@ const Button = shaili('button', {
   }
 });
 
-// Usage
+// Usage - Beautiful Hindi CSS-in-JS!
 <Button rang="dwitiyak" akar="lg">
   क्लिक करें (Click me!)
 </Button>`;
@@ -230,7 +230,7 @@ export function Page() {
               </a>
             </div>
 
-            <div className={roop({ display: 'flex', gap: '15px', flexWrap: 'wrap' })}>
+            <div className={style({ display: 'flex', gap: '15px', flexWrap: 'wrap' })}>
               <Button 
                 className={style({
                   background: 'linear-gradient(45deg, #ff6b6b, #ff8e53)',
@@ -242,6 +242,8 @@ export function Page() {
                   fontSize: '16px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
+                  textDecoration: 'none',
+                  display: 'inline-block',
                   ':hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0 10px 25px rgba(255, 107, 107, 0.4)',
@@ -263,6 +265,8 @@ export function Page() {
                   fontSize: '16px',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
+                  textDecoration: 'none',
+                  display: 'inline-block',
                   ':hover': {
                     transform: 'translateY(-2px)',
                     boxShadow: '0 10px 25px rgba(78, 205, 196, 0.4)',
@@ -301,7 +305,7 @@ export function Page() {
             </div>
           </div>
 
-          <div className={roop({ flex: 1, width: '100%' })}>
+          <div className={style({ flex: 1, width: '100%' })}>
             <Pre
               className={style({
                 boxShadow: '0px 20px 60px rgba(0,0,0,0.3)',
@@ -312,7 +316,7 @@ export function Page() {
               })}
             >
               <code
-                className={`language-jsx ${roop({ 
+                className={`language-jsx ${style({ 
                   display: 'block',
                   fontSize: '14px',
                   lineHeight: 1.5,
@@ -336,22 +340,22 @@ export function Page() {
             {
               icon: '🚀',
               title: 'Zero Runtime',
-              description: 'All styles are extracted at build time. No runtime overhead!'
+              description: 'All styles are extracted at build time. No runtime overhead, pure performance!'
             },
             {
               icon: '🔒',
               title: 'Type Safe',
-              description: 'Full TypeScript support with intelligent autocomplete.'
+              description: 'Full TypeScript support with intelligent autocomplete and error checking.'
             },
             {
               icon: '🌏',
               title: 'Hindi API',
-              description: 'Natural Hindi terminology makes CSS-in-JS feel intuitive.'
+              description: 'Natural Hindi terminology makes CSS-in-JS intuitive and culturally familiar.'
             },
             {
               icon: '🎨',
               title: 'Modern Design',
-              description: 'Built-in design tokens and beautiful default themes.'
+              description: 'Built-in design tokens, beautiful themes, and component-first architecture.'
             }
           ].map((feature, index) => (
             <div
