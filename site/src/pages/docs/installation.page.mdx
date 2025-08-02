@@ -1,13 +1,13 @@
 import { DocsLayout as Layout } from './docs-layout';
 
 export const documentProps = {
-  title: 'Installation — रंगरूप (RangRoop)',
+  title: 'Installation — RangRoop',
 };
 
 <Layout>
 # Installation
 
-रंगरूप is a modern CSS-in-JS library with Hindi terminology that makes styling intuitive and type-safe.
+RangRoop is a modern CSS-in-JS library with Hindi terms that makes styling intuitive and type-safe.
 
 <CH.Code>
 ```fish React
@@ -90,7 +90,7 @@ module.exports = withRangRoop({
 
 ### 1. Create your first styled component
 
-Import `shaili` (शैली = style) and create a beautiful button:
+Import `shaili` and create a beautiful button:
 
 <CH.Scrollycoding className="quick-start" start={1}>
 
@@ -102,15 +102,15 @@ const Button = shaili('button', {});
 
 ---
 
-### 2. Add base styles (आधार)
+### 2. Add base styles
 
-Add base styles using the `aadhar` (आधार = foundation) property:
+Add base styles using the `base` property:
 
 ```tsx button.tsx focus=4:12
 import { shaili } from '@rangroop/core';
 
 const Button = shaili('button', {
-  aadhar: {
+  base: {
     padding: '12px 24px',
     borderRadius: '8px', 
     fontWeight: '600',
@@ -123,15 +123,15 @@ const Button = shaili('button', {
 
 ---
 
-### 3. Add variants (विकल्प)
+### 3. Add variants
 
-Create style variants using `vikalp` (विकल्प = options):
+Create style variants using `variants`:
 
 ```tsx button.tsx focus=13:25
 import { shaili } from '@rangroop/core';
 
 const Button = shaili('button', {
-  aadhar: {
+  base: {
     padding: '12px 24px',
     borderRadius: '8px',
     fontWeight: '600', 
@@ -139,11 +139,11 @@ const Button = shaili('button', {
     border: 'none',
     transition: 'all 0.2s ease',
   },
-  vikalp: {
-    rang: {
-      mukhya: { backgroundColor: '#3b82f6', color: 'white' },
-      dwitiyak: { backgroundColor: '#8b5cf6', color: 'white' },
-      safalta: { backgroundColor: '#10b981', color: 'white' },
+  variants: {
+    color: {
+      primary: { backgroundColor: '#3b82f6', color: 'white' },
+      secondary: { backgroundColor: '#8b5cf6', color: 'white' },
+      success: { backgroundColor: '#10b981', color: 'white' },
     }
   }
 });
@@ -153,13 +153,13 @@ const Button = shaili('button', {
 
 ### 4. Set default variants
 
-Use `mukhyaVikalp` (मुख्यविकल्प = main options) for defaults:
+Use `defaultVariants` for defaults:
 
 ```tsx button.tsx focus=26:28
 import { shaili } from '@rangroop/core';
 
 const Button = shaili('button', {
-  aadhar: {
+  base: {
     padding: '12px 24px',
     borderRadius: '8px',
     fontWeight: '600',
@@ -167,15 +167,15 @@ const Button = shaili('button', {
     border: 'none',
     transition: 'all 0.2s ease',
   },
-  vikalp: {
-    rang: {
-      mukhya: { backgroundColor: '#3b82f6', color: 'white' },
-      dwitiyak: { backgroundColor: '#8b5cf6', color: 'white' },
-      safalta: { backgroundColor: '#10b981', color: 'white' },
+  variants: {
+    color: {
+      primary: { backgroundColor: '#3b82f6', color: 'white' },
+      secondary: { backgroundColor: '#8b5cf6', color: 'white' },
+      success: { backgroundColor: '#10b981', color: 'white' },
     }
   },
-  mukhyaVikalp: {
-    rang: 'mukhya'
+  defaultVariants: {
+    color: 'primary'
   }
 });
 ```
@@ -187,51 +187,49 @@ const Button = shaili('button', {
 Now use your beautiful, type-safe button:
 
 ```tsx app.tsx focus=1:5
-<Button rang="dwitiyak">
-  सुंदर बटन (Beautiful Button)
+<Button color="secondary">
+  Click Karo!
 </Button>
 
-<Button rang="safalta">Success Button</Button>
+<Button color="success">Success Button</Button>
 ```
 
 </CH.Scrollycoding>
 
 ## API Overview
 
-RangRoop provides these main functions with Hindi terminology:
+RangRoop provides these main functions with Hindi terms:
 
 ```tsx
 import {
-  shaili,        // शैली - Create styled components
-  roop,          // रूप - Create style classes  
-  rangAnubandh,  // रंगअनुबंध - Theme contract
-  saralRoop,     // सरलरूप - Simple style helpers
+  shaili,        // Create styled components
+  roop,          // Create style classes  
+  rangContract,  // Theme contract
+  saralRoop,     // Simple style helpers
 } from '@rangroop/core';
 ```
 
-### Hindi Terminology Guide
+### Hindi Terms Guide
 
-| English | Hindi | Pronunciation | Usage |
-|---------|-------|---------------|-------|
-| **shaili** | शैली | shy-lee | Styled components |
-| **roop** | रूप | roop | Style classes |
-| **rang** | रंग | rung | Colors |
-| **vikalp** | विकल्प | vi-kalp | Variants/Options |
-| **aadhar** | आधार | aa-dhaar | Base styles |
-| **saral** | सरल | sa-ral | Simple/Easy |
+| English | Hindi (Romanized) | Usage |
+|---------|-------------------|-------|
+| **shaili** | Style | Styled components |
+| **roop** | Form/Appearance | Style classes |
+| **rang** | Color | Colors |
+| **saral** | Simple/Easy | Helper functions |
 
 ## Theme System
 
 RangRoop comes with a beautiful built-in theme system:
 
 ```tsx
-import { rangAnubandh } from '@rangroop/core';
+import { rangContract } from '@rangroop/core';
 
 const Card = shaili('div', {
-  aadhar: {
-    padding: rangAnubandh.sthan.lg,          // स्थान = space
-    borderRadius: rangAnubandh.akar.md,      // आकार = size  
-    backgroundColor: rangAnubandh.rang.mukhya[100],  // रंग = color
+  base: {
+    padding: rangContract.space.lg,
+    borderRadius: rangContract.radii.md,      
+    backgroundColor: rangContract.colors.primary[100],
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
   }
 });
@@ -242,6 +240,6 @@ const Card = shaili('div', {
 - 📖 [Learn Basic Styling](./styling) - Master the fundamentals
 - 🎨 [Theming Guide](./theming) - Customize colors and tokens
 - 🔧 [Dynamic Styling](./dynamic-styling) - Runtime style updates
-- 🎮 [Try the Playground](/playground) - Experiment with रंगरूप
+- 🎮 [Try the Playground](/playground) - Experiment with RangRoop
 
 </Layout>

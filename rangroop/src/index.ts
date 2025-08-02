@@ -1,14 +1,14 @@
-// रंगरूप - Hindi CSS-in-JS Library
-export * from './shaili';  // styled components (शैली = style)
-export * from './roop';    // style function (रूप = form/appearance)
-export * from './rang';    // colors and themes (रंग = color)
-export * from './vikalp';  // variants (विकल्प = options)
+// RangRoop - CSS-in-JS with Hindi Terms in English
+export * from './shaili';    // styled components
+export * from './roop';      // style function  
+export * from './rang';      // colors and themes
+export * from './variants';  // variants
 export * from './types';
 
 // Re-export commonly used functions with Hindi names
 export {
-  globalStyle as vishwaShailI,  // विश्वशैली = global style
-  createVar as banayeVar,       // बनाये = create
-  assignVars as lagayeVars,     // लगाये = assign
-  keyframes as gatiFrames       // गति = motion
+  globalStyle as globalShaili,  // global style
+  createVar as banaoVar,        // create variable
+  assignVars as lagaoVars,      // assign variables
+  keyframes as chalFrames       // animation frames
 } from '@vanilla-extract/css';
