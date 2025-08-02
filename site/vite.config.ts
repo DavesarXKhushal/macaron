@@ -16,7 +16,9 @@ export default defineConfig(async () => {
     optimizeDeps: {
       include: ['react/jsx-runtime'],
     },
-
+    ssr: {
+      noExternal: ['@macaron-css/core', '@macaron-css/react'],
+    },
     plugins: [
       react(),
       macaronVitePlugin(),
