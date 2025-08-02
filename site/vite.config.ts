@@ -16,6 +16,11 @@ export default defineConfig(async () => {
     optimizeDeps: {
       include: ['react/jsx-runtime'],
     },
+    server: {
+      hmr: {
+        port: 24678
+      }
+    },
     plugins: [
       react(),
       macaronVitePlugin(),
