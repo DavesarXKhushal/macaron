@@ -1,4 +1,4 @@
-import { roop, rangSahayak } from '@rangroop/core';
+import { style } from '@macaron-css/core';
 import React from 'react';
 import { Button } from '../../components/button';
 import { Pre } from '../../components/pre';
@@ -56,7 +56,7 @@ const Button = shaili('button', {
 export function Page() {
   return (
     <main
-      className={roop({
+      className={style({
         maxWidth: '1200px',
         padding: '0 3vw',
         margin: 'auto',
@@ -69,7 +69,7 @@ export function Page() {
       })}
     >
       <div
-        className={roop({
+        className={style({
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -78,7 +78,7 @@ export function Page() {
         })}
       >
         <div
-          className={roop({
+          className={style({
             display: 'flex',
             alignItems: 'center',
             gap: '5vw',
@@ -93,7 +93,7 @@ export function Page() {
           })}
         >
           <div
-            className={roop({
+            className={style({
               color: 'white',
               flex: 1,
               display: 'flex',
@@ -106,7 +106,7 @@ export function Page() {
           >
             {/* New RangRoop Logo */}
             <div
-              className={roop({
+              className={style({
                 display: 'flex',
                 alignItems: 'center',
                 gap: '20px',
@@ -114,7 +114,7 @@ export function Page() {
               })}
             >
               <div
-                className={roop({
+                className={style({
                   width: '80px',
                   height: '80px',
                   background: rangSahayak.gradient('#ff6b6b', '#4ecdc4'),
@@ -132,7 +132,7 @@ export function Page() {
                 रं
               </div>
               <h1
-                className={roop({
+                className={style({
                   fontSize: '4rem',
                   fontWeight: '800',
                   background: rangSahayak.gradient('#ff6b6b', '#4ecdc4'),
@@ -151,7 +151,7 @@ export function Page() {
             </div>
 
             <p
-              className={roop({
+              className={style({
                 fontSize: '1.3rem',
                 lineHeight: 1.6,
                 color: '#e2e8f0',
@@ -166,9 +166,9 @@ export function Page() {
             </p>
 
             <div
-              className={roop({
+              className={style({
                 borderRadius: '20px',
-                background: rangSahayak.pardarshita('#1a202c', 0.8),
+                background: 'rgba(26, 32, 44, 0.8)',
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 padding: '25px',
@@ -176,7 +176,7 @@ export function Page() {
               })}
             >
               <span
-                className={roop({
+                className={style({
                   fontWeight: '600',
                   fontSize: '1.4rem',
                   color: '#ff6b6b',
@@ -187,7 +187,7 @@ export function Page() {
                 📦 Install रंगरूप
               </span>
               <div
-                className={roop({
+                className={style({
                   fontFamily: "'JetBrains Mono', monospace",
                   padding: '15px 20px',
                   fontWeight: 400,
@@ -203,7 +203,7 @@ export function Page() {
                 })}
               >
                 <span
-                  className={roop({
+                  className={style({
                     color: '#7c3aed',
                     userSelect: 'none',
                     marginRight: '10px',
@@ -214,7 +214,7 @@ export function Page() {
                 npm install @rangroop/core
               </div>
               <a
-                className={roop({
+                className={style({
                   display: 'inline-block',
                   color: '#4ecdc4',
                   fontWeight: '500',
@@ -232,8 +232,8 @@ export function Page() {
 
             <div className={roop({ display: 'flex', gap: '15px', flexWrap: 'wrap' })}>
               <Button 
-                className={roop({
-                  background: rangSahayak.gradient('#ff6b6b', '#ff8e53'),
+                className={style({
+                  background: 'linear-gradient(45deg, #ff6b6b, #ff8e53)',
                   border: 'none',
                   color: 'white',
                   padding: '12px 24px',
@@ -253,8 +253,8 @@ export function Page() {
                 📚 Documentation
               </Button>
               <Button 
-                className={roop({
-                  background: rangSahayak.gradient('#4ecdc4', '#44a08d'),
+                className={style({
+                  background: 'linear-gradient(45deg, #4ecdc4, #44a08d)',
                   border: 'none',
                   color: 'white',
                   padding: '12px 24px',
@@ -275,7 +275,7 @@ export function Page() {
               </Button>
               <a 
                 href="https://github.com/rangroop/rangroop"
-                className={roop({
+                className={style({
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
@@ -303,7 +303,7 @@ export function Page() {
 
           <div className={roop({ flex: 1, width: '100%' })}>
             <Pre
-              className={roop({
+              className={style({
                 boxShadow: '0px 20px 60px rgba(0,0,0,0.3)',
                 borderRadius: '16px',
                 overflow: 'hidden',
@@ -325,7 +325,7 @@ export function Page() {
 
         {/* Features Section */}
         <div
-          className={roop({
+          className={style({
             marginTop: '80px',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
@@ -334,7 +334,7 @@ export function Page() {
         >
           {[
             {
-              icon: '��',
+              icon: '🚀',
               title: 'Zero Runtime',
               description: 'All styles are extracted at build time. No runtime overhead!'
             },
@@ -356,10 +356,10 @@ export function Page() {
           ].map((feature, index) => (
             <div
               key={index}
-              className={roop({
+              className={style({
                 padding: '30px',
                 borderRadius: '20px',
-                background: rangSahayak.pardarshita('#1a202c', 0.6),
+                background: 'rgba(26, 32, 44, 0.6)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(10px)',
                 transition: 'all 0.3s ease',
@@ -370,7 +370,7 @@ export function Page() {
               })}
             >
               <div
-                className={roop({
+                className={style({
                   fontSize: '2.5rem',
                   marginBottom: '15px',
                 })}
@@ -378,7 +378,7 @@ export function Page() {
                 {feature.icon}
               </div>
               <h3
-                className={roop({
+                className={style({
                   fontSize: '1.5rem',
                   fontWeight: '700',
                   color: 'white',
@@ -389,7 +389,7 @@ export function Page() {
                 {feature.title}
               </h3>
               <p
-                className={roop({
+                className={style({
                   color: '#cbd5e1',
                   fontSize: '1rem',
                   lineHeight: 1.6,
