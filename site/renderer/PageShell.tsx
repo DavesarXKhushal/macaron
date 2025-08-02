@@ -12,7 +12,7 @@ globalStyle('*', {
 
 globalStyle('body', {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, #0f0715 0%, #1a0b2e 25%, #16213e 50%, #0f3460 75%, #0e4b99 100%)',
+  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
   backgroundAttachment: 'fixed',
 });
 
