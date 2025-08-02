@@ -117,7 +117,7 @@ export function Page() {
                 className={style({
                   width: '80px',
                   height: '80px',
-                  background: rangSahayak.gradient('#ff6b6b', '#4ecdc4'),
+                  background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
                   borderRadius: '20px',
                   display: 'flex',
                   alignItems: 'center',
@@ -135,7 +135,7 @@ export function Page() {
                 className={style({
                   fontSize: '4rem',
                   fontWeight: '800',
-                  background: rangSahayak.gradient('#ff6b6b', '#4ecdc4'),
+                  background: 'linear-gradient(45deg, #ff6b6b, #4ecdc4)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
