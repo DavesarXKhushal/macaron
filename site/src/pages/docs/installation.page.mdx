@@ -1,34 +1,38 @@
 import { DocsLayout as Layout } from './docs-layout';
 
 export const documentProps = {
-  title: 'Installation — macaron',
+  title: 'Installation — RangRoop',
 };
 
 <Layout>
 # Installation
 
+RangRoop is a modern CSS-in-JS library with Hindi terms that makes styling intuitive and type-safe.
+
 <CH.Code>
-```fish Solid
-# npm
-npm install @macaron-css/core @macaron-css/solid
-
-# yarn
-yarn add @macaron-css/core @macaron-css/solid
-
-```
-
 ```fish React
 # npm
-npm install @macaron-css/core @macaron-css/react
+npm install @rangroop/core
 
-# yarn
-yarn add @macaron-css/core @macaron-css/react
+# yarn  
+yarn add @rangroop/core
+
+# pnpm
+pnpm add @rangroop/core
+```
+
+```fish Additional Packages
+# For Vite projects
+npm install @rangroop/vite
+
+# For Next.js projects  
+npm install @rangroop/nextjs
 ```
 </CH.Code>
 
 ## Setting up bundler
 
-Macaron currently supports vite and esbuild. Install and setup the plugin for your bundler :-
+RangRoop currently supports Vite and Next.js. More bundlers coming soon!
 
 <CH.Spotlight className="bundler" start={1}>
 
@@ -37,23 +41,23 @@ Macaron currently supports vite and esbuild. Install and setup the plugin for yo
 
 ---
 
-vite
+### Vite Setup
 
 <CH.Code>
 ```fish Installation
-npm install @macaron-css/vite
+npm install @rangroop/vite
 ```
 
 ---
 
 ```js vite.config.js
-import { macaronVitePlugin } from '@macaron-css/vite';
+import { rangRoopVitePlugin } from '@rangroop/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
     // mark
-    macaronVitePlugin(),
+    rangRoopVitePlugin(),
     // other plugins
   ],
 });
@@ -62,219 +66,180 @@ export default defineConfig({
 
 ---
 
-esbuild
+### Next.js Setup
 
 <CH.Code>
 ```fish Installation
-npm install @macaron-css/esbuild
+npm install @rangroop/nextjs
 ```
 
 ---
 
-```js config
-const { macaronEsbuildPlugins } = require('@macaron-css/esbuild');
-const esbuild = require('esbuild');
+```js next.config.js
+const { withRangRoop } = require('@rangroop/nextjs');
 
-esbuild.build({
-  entryPoints: ['src/index.tsx'],
-  // mark
-  plugins: [...macaronEsbuildPlugins()],
-  outdir: 'dist',
-  format: 'esm',
-  bundle: true,
+module.exports = withRangRoop({
+  // Your Next.js config
 });
 ```
 </CH.Code>
+
 </CH.Spotlight>
-> In the `vite.config.js`, add the macaron plugin before other plugins
 
-## Usage
+## Quick Start
 
-<CH.Scrollycoding className="f" start={2}>
-### Create a styled component
+### 1. Create your first styled component
 
-Import `styled` from either `@macaron-css/solid` or `@macaron-css/react` and create a styled component.
+Import `shaili` and create a beautiful button:
 
-```js button.tsx focus=3
-import { styled } from '@macaron-css/solid';
+<CH.Scrollycoding className="quick-start" start={1}>
 
-const Button = styled('button', {});
+```tsx button.tsx focus=1:3
+import { shaili } from '@rangroop/core';
+
+const Button = shaili('button', {});
 ```
 
 ---
 
-### Add styles
+### 2. Add base styles
 
-Add base styles that are applied to the component by default. This can include hover states, media queries, nested selectors etc.
-All styling APIs in macaron take style objects as inputs. This makes the styles type-safe and provides autocomplete via `csstype`.
+Add base styles using the `base` property:
 
-```js button.tsx focus=4:12
-import { styled } from '@macaron-css/solid';
+```tsx button.tsx focus=4:12
+import { shaili } from '@rangroop/core';
 
-const Button = styled('button', {
+const Button = shaili('button', {
   base: {
-    backgroundColor: 'gainsboro',
-    borderRadius: '9999px',
-    fontSize: '13px',
-    padding: '10px 15px',
-    ':hover': {
-      backgroundColor: 'lightgray',
-    },
+    padding: '12px 24px',
+    borderRadius: '8px', 
+    fontWeight: '600',
+    cursor: 'pointer',
+    border: 'none',
+    transition: 'all 0.2s ease',
   },
 });
 ```
 
 ---
 
-### Add variants
+### 3. Add variants
 
-You can add variants by using the variants key. There is no limit to how many variants you can add.
+Create style variants using `variants`:
 
-A variant accepts the same style object as the base styles.
+```tsx button.tsx focus=13:25
+import { shaili } from '@rangroop/core';
 
-```js button.tsx focus=13:29
-import { styled } from '@macaron-css/solid';
-
-const Button = styled('button', {
+const Button = shaili('button', {
   base: {
-    backgroundColor: 'gainsboro',
-    borderRadius: '9999px',
-    fontSize: '13px',
-    padding: '10px 15px',
-    ':hover': {
-      backgroundColor: 'lightgray',
-    },
+    padding: '12px 24px',
+    borderRadius: '8px',
+    fontWeight: '600', 
+    cursor: 'pointer',
+    border: 'none',
+    transition: 'all 0.2s ease',
   },
   variants: {
     color: {
-      violet: {
-        backgroundColor: 'blueviolet',
-        color: 'white',
-        ':hover': {
-          backgroundColor: 'darkviolet',
-        },
-      },
-      gray: {
-        backgroundColor: 'gainsboro',
-        ':hover': {
-          backgroundColor: 'lightgray',
-        },
-      },
-    },
-  },
+      primary: { backgroundColor: '#3b82f6', color: 'white' },
+      secondary: { backgroundColor: '#8b5cf6', color: 'white' },
+      success: { backgroundColor: '#10b981', color: 'white' },
+    }
+  }
 });
 ```
 
 ---
 
-### Default variants
+### 4. Set default variants
 
-You can use the defaultVariants feature to set a variant by default. This variants can be overriden at the time of usage.
+Use `defaultVariants` for defaults:
 
-```js button.tsx focus=30:32
-import { styled } from '@macaron-css/solid';
+```tsx button.tsx focus=26:28
+import { shaili } from '@rangroop/core';
 
-const Button = styled('button', {
+const Button = shaili('button', {
   base: {
-    backgroundColor: 'gainsboro',
-    borderRadius: '9999px',
-    fontSize: '13px',
-    padding: '10px 15px',
-    ':hover': {
-      backgroundColor: 'lightgray',
-    },
+    padding: '12px 24px',
+    borderRadius: '8px',
+    fontWeight: '600',
+    cursor: 'pointer', 
+    border: 'none',
+    transition: 'all 0.2s ease',
   },
   variants: {
     color: {
-      violet: {
-        backgroundColor: 'blueviolet',
-        color: 'white',
-        ':hover': {
-          backgroundColor: 'darkviolet',
-        },
-      },
-      gray: {
-        backgroundColor: 'gainsboro',
-        ':hover': {
-          backgroundColor: 'lightgray',
-        },
-      },
-    },
+      primary: { backgroundColor: '#3b82f6', color: 'white' },
+      secondary: { backgroundColor: '#8b5cf6', color: 'white' },
+      success: { backgroundColor: '#10b981', color: 'white' },
+    }
   },
   defaultVariants: {
-    color: 'violet',
-  },
+    color: 'primary'
+  }
 });
 ```
 
 ---
 
-### Rendering the component
+### 5. Use your component
 
-This component can now be used just like any regular Solid/React component with type-safe props that are derived from your variants.
-Unlike vanilla-extract that restricts style declarations to `.css.ts`, macaron allows you to declare styles in the same file providing _true_ colocation.
+Now use your beautiful, type-safe button:
 
-```js button.tsx focus=35:39
-import { styled } from '@macaron-css/solid';
+```tsx app.tsx focus=1:5
+<Button color="secondary">
+  Click Karo!
+</Button>
 
-const Button = styled('button', {
-  base: {
-    backgroundColor: 'gainsboro',
-    borderRadius: '9999px',
-    fontSize: '13px',
-    padding: '10px 15px',
-    ':hover': {
-      backgroundColor: 'lightgray',
-    },
-  },
-  variants: {
-    color: {
-      violet: {
-        backgroundColor: 'blueviolet',
-        color: 'white',
-        ':hover': {
-          backgroundColor: 'darkviolet',
-        },
-      },
-      gray: {
-        backgroundColor: 'gainsboro',
-        ':hover': {
-          backgroundColor: 'lightgray',
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    color: 'violet',
-  },
-});
-
-() => <Button color="gray">Click me!</Button>;
+<Button color="success">Success Button</Button>
 ```
 
 </CH.Scrollycoding>
 
-## Available functions
+## API Overview
 
-Other than `styled`, macaron provides the following functions:-
+RangRoop provides these main functions with Hindi terms:
 
-```js focus=1[10:15],4:14
-import { styled } from '@macaron-css/solid';
-
+```tsx
 import {
-  style,
-  recipe,
-  createTheme,
-  createThemeContract,
-  styleVariants,
-  createVar,
-  fallbackVar,
-  assignVars,
-  keyframs,
-  fontFace,
-  createContainer,
-} from '@macaron-css/core';
+  shaili,        // Create styled components
+  roop,          // Create style classes  
+  rangContract,  // Theme contract
+  saralRoop,     // Simple style helpers
+} from '@rangroop/core';
 ```
 
-</Layout>
+### Hindi Terms Guide
 
+| English | Hindi (Romanized) | Usage |
+|---------|-------------------|-------|
+| **shaili** | Style | Styled components |
+| **roop** | Form/Appearance | Style classes |
+| **rang** | Color | Colors |
+| **saral** | Simple/Easy | Helper functions |
+
+## Theme System
+
+RangRoop comes with a beautiful built-in theme system:
+
+```tsx
+import { rangContract } from '@rangroop/core';
+
+const Card = shaili('div', {
+  base: {
+    padding: rangContract.space.lg,
+    borderRadius: rangContract.radii.md,      
+    backgroundColor: rangContract.colors.primary[100],
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+  }
+});
+```
+
+## What's Next?
+
+- 📖 [Learn Basic Styling](./styling) - Master the fundamentals
+- 🎨 [Theming Guide](./theming) - Customize colors and tokens
+- 🔧 [Dynamic Styling](./dynamic-styling) - Runtime style updates
+- 🎮 [Try the Playground](/playground) - Experiment with RangRoop
+
+</Layout>

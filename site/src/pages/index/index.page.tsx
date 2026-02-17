@@ -1,4 +1,4 @@
-import { globalStyle, macaron$, style } from '@macaron-css/core';
+import { style } from '@macaron-css/core';
 import React from 'react';
 import { Button } from '../../components/button';
 import { Pre } from '../../components/pre';
@@ -6,22 +6,46 @@ import { screens } from '../../theme';
 import fs from 'fs';
 import path from 'path';
 import { highlight } from '../../components/code-block';
-import { navigate } from 'vite-plugin-ssr/client/router';
 
-const code = macaron$(() => {
-  const contents = fs.readFileSync(
-    path.join(process.cwd(), 'src', 'code-examples', 'home.jsx'),
-    'utf8'
-  );
+const code = `import { shaili, roop, rangContract } from '@rangroop/core';
 
-  return highlight(contents);
+// Button banao with Hindi terms
+const Button = shaili('button', {
+  base: {
+    padding: '12px 24px',
+    borderRadius: '8px',
+    fontWeight: '500',
+    cursor: 'pointer',
+    border: 'none',
+    transition: 'all 0.2s ease',
+  },
+  variants: {
+    color: {
+      primary: { background: 'blue', color: 'white' },
+      danger: { background: 'red', color: 'white' },
+      success: { background: 'green', color: 'white' },
+    },
+    size: {
+      small: { padding: '6px 12px', fontSize: '14px' },
+      medium: { padding: '12px 24px', fontSize: '16px' },
+      large: { padding: '18px 36px', fontSize: '18px' },
+    },
+  },
+  defaultVariants: {
+    color: 'primary',
+    size: 'medium',
+  }
 });
+
+// Usage
+<Button color="success" size="large">
+  Click Karo!
+</Button>`;
 
 export function Page() {
   return (
     <main
       className={style({
-        // width: '100%',
         maxWidth: '1200px',
         padding: '0 3vw',
         margin: 'auto',
@@ -69,9 +93,11 @@ export function Page() {
               },
             })}
           >
+            {/* RangRoop Logo */}
             <img
               className={style({ width: '80%' })}
-              src="/macaron-stacked.svg"
+              src="/rangroop-logo.svg"
+              alt="RangRoop"
             />
             <p
               className={style({
@@ -84,8 +110,8 @@ export function Page() {
               })}
             >
               Typesafe CSS-in-JS with zero runtime, colocation, maximum safety
-              and productivity. Macaron is a new compile time CSS-in-JS library
-              with type safety.
+              and productivity. RangRoop is a new compile time CSS-in-JS library
+              with type safety and Hindi terms.
             </p>
             <div
               className={style({
@@ -103,7 +129,7 @@ export function Page() {
                   display: 'block',
                 })}
               >
-                Install macaron
+                Install RangRoop
               </span>
               <div
                 className={style({
@@ -129,7 +155,7 @@ export function Page() {
                 >
                   $
                 </span>
-                npm install @macaron-css/core
+                npm install @rangroop/core
               </div>
               <a
                 className={style({
@@ -149,7 +175,7 @@ export function Page() {
               <Button color="secondary" as="a" href="/playground">
                 Playground
               </Button>
-              <a href="https://github.com/macaron-css/macaron">
+              <a href="https://github.com/rangroop/rangroop">
                 <svg
                   width="45"
                   height="45"
@@ -171,7 +197,7 @@ export function Page() {
             >
               <code
                 className={`language-jsx ${style({ display: 'block' })}`}
-                dangerouslySetInnerHTML={{ __html: code }}
+                dangerouslySetInnerHTML={{ __html: highlight(code) }}
               />
             </Pre>
           </div>

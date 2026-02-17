@@ -20,10 +20,10 @@ async function render(pageContext: PageContextServer) {
   const { documentProps } = pageContext.exports;
   const title =
     (documentProps && documentProps.title) ||
-    'macaron — CSS-in-JS with zero-runtime';
+    'RangRoop — CSS-in-JS with Hindi terms';
   const desc =
     (documentProps && documentProps.description) ||
-    'Typesafe CSS-in-JS with zero runtime, colocation, maximum safety and productivity. Macaron is a new compile time CSS-in-JS library with type safety.';
+    'Typesafe CSS-in-JS with zero runtime and Hindi terms. RangRoop makes styling intuitive with familiar Hindi words in English.';
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
@@ -47,8 +47,8 @@ async function render(pageContext: PageContextServer) {
           rel="stylesheet"
         />
         <title>${title}</title>
-        <meta property="og:title" content="macaron — Colocated CSS-in-JS with zero-runtime" />
-        <meta property="og:description" content="Typesafe CSS-in-JS with zero runtime, colocation, maximum safety and productivity. Macaron is a new compile time CSS-in-JS library with type safety." />
+        <meta property="og:title" content="RangRoop — CSS-in-JS with Hindi terms" />
+        <meta property="og:description" content="Typesafe CSS-in-JS with zero runtime and Hindi terms. RangRoop makes styling intuitive with familiar Hindi words in English." />
         <meta name="og:locale" content="en_US" />
         <meta name="twitter:site" content="@mokshit06" />
         <meta name="twitter:card" content="summary_large_image" />

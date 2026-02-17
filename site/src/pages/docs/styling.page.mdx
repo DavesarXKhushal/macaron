@@ -1,205 +1,322 @@
 import { DocsLayout as Layout } from './docs-layout';
 
 export const documentProps = {
-  title: 'Styling — macaron',
+  title: 'Basic Styling — रंगरूप (RangRoop)',
 };
 
 <Layout>
-# Styling
+# Basic Styling
 
-All styling APIs in macaron take style objects as inputs. These makes the styles type-safe and provides autocomplete via `csstype`. Below are some examples.
+Learn how to create beautiful components with रंगरूप's intuitive Hindi API.
 
-### Component-less styles
+## Core Concepts
 
-```js
-import { style } from '@macaron-css/core';
+### 1. Shaili (शैली) - Styled Components
 
-const button = style({
-  backgroundColor: 'gainsboro',
-  borderRadius: '9999px',
-  fontSize: '13px',
-  border: '0',
+The `shaili` function creates styled React components with built-in variant support:
+
+```tsx
+import { shaili } from '@rangroop/core';
+
+const Card = shaili('div', {
+  aadhar: {
+    padding: '20px',
+    borderRadius: '12px',
+    backgroundColor: 'white',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+  }
 });
 
-() => <button class={button}>Button</button>;
+// Usage
+<Card>Beautiful card content</Card>
 ```
 
-### Global styles
+### 2. Roop (रूप) - Style Classes
 
-```js
-import { globalStyle } from '@macaron-css/core';
+Use `roop` for one-off styles or when you need more control:
 
-globalStyle('*', {
-  margin: 0,
-  padding: 0,
+```tsx
+import { roop } from '@rangroop/core';
+
+const headerClass = roop({
+  fontSize: '2rem',
+  fontWeight: 'bold',
+  color: '#1a202c',
+  marginBottom: '1rem'
 });
+
+<h1 className={headerClass}>
+  रंगरूप Heading
+</h1>
 ```
 
-### Base styles
+### 3. Saral Roop (सरलरूप) - Simple Helpers
 
-```js
-import { styled } from '@macaron-css/solid';
+Pre-built helpers for common patterns:
 
-const Button = styled('button', {
-  base: {
-    backgroundColor: 'gainsboro',
-    borderRadius: '9999px',
-    fontSize: '13px',
-    border: '0',
+```tsx
+import { saralRoop } from '@rangroop/core';
+
+<div className={saralRoop.kendr()}>
+  {/* Centered content */}
+</div>
+
+<div className={saralRoop.chhaya('large')}>
+  {/* Content with large shadow */}
+</div>
+```
+
+## Working with Variants (विकल्प)
+
+Variants make your components flexible and reusable:
+
+### Basic Variants
+
+```tsx
+const Button = shaili('button', {
+  aadhar: {
+    padding: '8px 16px',
+    borderRadius: '6px',
+    fontWeight: '500',
+    cursor: 'pointer',
+    border: 'none'
   },
+  vikalp: {
+    rang: {
+      mukhya: { 
+        backgroundColor: '#3b82f6', 
+        color: 'white',
+        ':hover': { backgroundColor: '#2563eb' }
+      },
+      khatara: { 
+        backgroundColor: '#ef4444', 
+        color: 'white',
+        ':hover': { backgroundColor: '#dc2626' }
+      }
+    },
+    akar: {
+      sm: { padding: '4px 8px', fontSize: '14px' },
+      lg: { padding: '12px 24px', fontSize: '18px' }
+    }
+  }
 });
 
-() => <Button>Button</Button>;
+// Usage with full type safety
+<Button rang="khatara" akar="lg">
+  Delete Account
+</Button>
 ```
 
-### Simple Psuedo selectors
+### Default Variants
 
-Selectors that don't take any parameters can be used at top level
+Set sensible defaults with `mukhyaVikalp`:
 
-```js focus=4:6
-const Button = styled('button', {
-  base: {
-    // base styles
+```tsx
+const Input = shaili('input', {
+  aadhar: {
+    border: '1px solid #d1d5db',
+    borderRadius: '6px',
+    padding: '8px 12px'
+  },
+  vikalp: {
+    sthiti: {
+      default: { borderColor: '#d1d5db' },
+      error: { borderColor: '#ef4444' },
+      success: { borderColor: '#10b981' }
+    }
+  },
+  mukhyaVikalp: {
+    sthiti: 'default'  // Default state
+  }
+});
+```
+
+## Responsive Design
+
+Use media queries for responsive styling:
+
+```tsx
+import { screens } from '../theme';
+
+const ResponsiveCard = shaili('div', {
+  aadhar: {
+    padding: '24px',
+    '@media': {
+      [screens.md]: {
+        padding: '16px'
+      },
+      [screens.sm]: {
+        padding: '12px'
+      }
+    }
+  }
+});
+```
+
+## Hover & Focus States
+
+Add interactive states easily:
+
+```tsx
+const InteractiveButton = shaili('button', {
+  aadhar: {
+    backgroundColor: '#3b82f6',
+    color: 'white',
+    padding: '12px 24px',
+    borderRadius: '8px',
+    border: 'none',
+    cursor: 'pointer',
+    transition: 'all 0.2s ease',
+    
     ':hover': {
-      backgroundColor: 'lightgray',
+      backgroundColor: '#2563eb',
+      transform: 'translateY(-1px)',
+      boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
     },
-  },
+    
+    ':focus': {
+      outline: 'none',
+      boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.3)'
+    },
+    
+    ':active': {
+      transform: 'translateY(0)',
+    }
+  }
 });
-
-() => <Button>Button</Button>;
 ```
 
-```js focus=4:15
-const Button = styled('button', {
-  base: {
-    // base styles
-    '::before': {
-      content: `''`,
-      display: 'block',
-      backgroundImage: 'linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb)',
-      position: 'absolute',
-      top: '-3px',
-      left: '-3px',
-      width: 'calc(100% + 6px)',
-      height: 'calc(100% + 6px)',
-      borderRadius: 'inherit',
-      zIndex: -1,
-    },
-  },
+## Composition & Inheritance
+
+Combine and extend components:
+
+```tsx
+// Base button
+const BaseButton = shaili('button', {
+  aadhar: {
+    padding: '8px 16px',
+    borderRadius: '6px',
+    fontWeight: '500',
+    cursor: 'pointer',
+    border: 'none'
+  }
 });
 
-() => <Button>Button</Button>;
+// Extended primary button
+const PrimaryButton = shaili(BaseButton, {
+  aadhar: {
+    backgroundColor: '#3b82f6',
+    color: 'white',
+    ':hover': {
+      backgroundColor: '#2563eb'
+    }
+  }
+});
 ```
 
-### Complex selectors
+## Advanced Patterns
 
-More complex selectors can be written inside `selectors`
+### Compound Variants
 
-```js focus=4:8
-const Button = styled('button', {
-  base: {
-    // base styles
-    selectors: {
-      '&[data-custom-attribute]': {
-        boxShadow: '0 0 0 3px royalblue',
+Create complex variant combinations:
+
+```tsx
+import { mishritVikalp } from '@rangroop/core';
+
+const ComplexButton = mishritVikalp(
+  {
+    aadhar: {
+      padding: '8px 16px',
+      borderRadius: '6px',
+      cursor: 'pointer'
+    },
+    vikalp: {
+      intent: {
+        primary: { backgroundColor: '#3b82f6' },
+        secondary: { backgroundColor: '#6b7280' }
       },
-    },
+      size: {
+        sm: { padding: '4px 8px' },
+        lg: { padding: '12px 24px' }
+      }
+    }
   },
-});
-
-// focus[15:35]
-// mark[15:35]
-() => <Button data-custom-attribute>Button</Button>;
-```
-
-### Target a macaron component
-
-macaron components implement `.toString()` which returns their base styles' classname. This can be used to target a macaron component.
-
-```js focus=14:16
-// mark[7:12]
-// focus[7:12]
-const Button = styled('button', {
-  base: {
-    backgroundColor: 'gainsboro',
-    borderRadius: '9999px',
-    fontSize: '13px',
-    border: '0',
-  },
-});
-
-const Icon = styled('svg', {
-  base: {
-    // base styles
-    selectors: {
-      [`${Button} &`]: {
-        marginLeft: '5px',
-      },
-    },
-  },
-});
-() => (
-  <Button>
-    Button
-    <Icon>...</Icon>
-  </Button>
+  [
+    {
+      conditions: { intent: 'primary', size: 'lg' },
+      style: { 
+        boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+        fontWeight: '600'
+      }
+    }
+  ]
 );
 ```
 
-### Target variants of macaron component
+### Dynamic Styles
 
-macaron components also implement a `selector` method that can be used to get the css selector of the variants applied.
+For runtime style changes:
 
-```js focus=25:27
-// mark[7:10]
-const Icon = styled('svg', {
-  base: {
-    display: 'inline-block',
-    marginLeft: '5px',
-  },
-  variants: {
-    size: {
-      // mark[7:11]
-      // focus[7:11]
-      small: {
-        width: '12px',
-      },
-      regular: {
-        width: '16px',
-      },
-    },
-  },
-  defaultVariants: {
-    size: 'regular',
-  },
-});
+```tsx
+import { rangSahayak } from '@rangroop/core';
 
-const Button = styled('button', {
-  base: {
-    // base styles
-    selectors: {
-      [`${Icon.selector({ size: 'small' })} &`]: {
-        marginLeft: '5px',
-      },
-    },
-  },
-});
-
-() => <Button color="violet">Button</Button>;
+function DynamicCard({ isActive, customColor }) {
+  return (
+    <div
+      className={roop({
+        padding: '20px',
+        borderRadius: '12px',
+        backgroundColor: isActive ? customColor : '#f8fafc',
+        border: `2px solid ${isActive ? customColor : '#e2e8f0'}`,
+        transform: isActive ? 'scale(1.02)' : 'scale(1)',
+        transition: 'all 0.2s ease'
+      })}
+    >
+      Dynamic content
+    </div>
+  );
+}
 ```
 
-### Generating styles
+## Best Practices
 
-There can be cases where you want to generate styles based on some theme config, or programmatically. Directly writing the code to transform the config into styles doesn't work since macaron's compiler only extracts the functions that are exported from macaron, not the closure surrounding it. To make it work, you can use the `macaron$` function. It evaluates the block passed to it at compile time and inlines the value returned in the bundle.
+### 1. Use Descriptive Variant Names
+```tsx
+// ✅ Good - descriptive Hindi terms
+vikalp: {
+  sthiti: { safalta: {...}, chetavani: {...}, khatara: {...} },
+  akar: { chota: {...}, madhyam: {...}, bada: {...} }
+}
 
-```js
-import { macaron$ } from '@macaron-css/core';
-
-const colors = [...];
-
-const styles = macaron$(() => {
-  return colors.map(color => style({ backgroundColor: color }))
-});
+// ❌ Avoid - unclear names
+vikalp: {
+  type: { a: {...}, b: {...}, c: {...} }
+}
 ```
+
+### 2. Keep Base Styles Simple
+```tsx
+// ✅ Good - focused base styles
+aadhar: {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '8px'
+}
+```
+
+### 3. Use Theme Tokens
+```tsx
+// ✅ Good - use theme system
+backgroundColor: rangAnubandh.rang.mukhya[500]
+
+// ❌ Avoid - hardcoded values
+backgroundColor: '#3b82f6'
+```
+
+## What's Next?
+
+- 🎨 [Theming System](./theming) - Learn about colors and design tokens
+- 🔧 [Dynamic Styling](./dynamic-styling) - Runtime style updates
+- 🎮 [Try the Playground](/playground) - Experiment with examples
 
 </Layout>
